@@ -1,16 +1,17 @@
 import React from "react";
 import "./App.css";
 
-function Todo({ todo, index, completeTodo, removeTodo }) {
+function Todo({ todo, index, completeTodo, removeTodo, saveRow }) {
   return (
     <div
       className="todo"
-      style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
+      // style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
     >
-      {todo.text}
+      {todo.name}  
+      {todo.mail}
       <div>
-        <button onClick={() => completeTodo(index)}>Complete</button>
         <button onClick={() => removeTodo(index)}>x</button>
+        {/* <button onClick={()=> saveRow(index)}>ajouter requête</button> */}
       </div>
     </div>
   );
@@ -41,17 +42,21 @@ function TodoForm({ addTodo }) {
 function App() {
   const [todos, setTodos] = React.useState([
     {
-      text: "Learn about React",
-      isCompleted: false
-    },
-    {
-      text: "Meet friend for lunch",
-      isCompleted: false
-    },
-    {
-      text: "Build really cool todo app",
+      name: "Donald",
+      mail : "Donald@gmail.com",
+      requete : "Maison à miami près du golf",
+      lbc_url : "www.leboncoin.fr/request=maison-pout-donald",
       isCompleted: false
     }
+    // ,
+    // {
+    //   text: "Meet friend for lunch",
+    //   isCompleted: false
+    // },
+    // {
+    //   text: "Build really cool todo app",
+    //   isCompleted: false
+    // }
   ]);
 
   const addTodo = text => {
@@ -71,6 +76,12 @@ function App() {
     setTodos(newTodos);
   };
 
+  const saveRow = index => {
+    const newTodos = [...todos];
+    newTodos[index].isValidated = true;
+    setTodos(newTodos);
+  };
+
   return (
     <div className="app">
       <div className="todo-list">
@@ -81,6 +92,7 @@ function App() {
             todo={todo}
             completeTodo={completeTodo}
             removeTodo={removeTodo}
+            saveRow={saveRow}
           />
         ))}
         <TodoForm addTodo={addTodo} />
