@@ -18,45 +18,54 @@ function Email({email}) {
 }
 
 
-
-function NameForm({  }) { //un nameform est une zone ou on peut ajouter un nom. reste a virer le handle submit...
-  const [value, setValue] = React.useState("nameee");
-  return ( // gérer le handlesubmit ci dessous
-    <div className="name">
-      {value}
-    </div>
-  );
-}
-
-function EmailForm({  }) { //un nameform est une zone ou on peut ajouter un nom. reste a virer le handle submit...
-  const [value, setValue] = React.useState("email");
-  return ( // gérer le handlesubmit ci dessous
-    <div className="email">
-      {value}
-    </div>
-  );
-}
-
-function SaveLineForm({addName,addEmail,index,saveLine}){
-  
-  return(
-  <div className ="line">
-    <div className="name">
-      <NameForm
-        key={index}
-        index={index}
-        />
-    </div>
-    <div className="email">
-      <EmailForm
-        key={index}
-        index={index}
-     />
-    </div>
+function saveLineForm({addName,addEmail,index}) {
+  return (
     <div>
-      <button onClick={() => saveLine(addName,addEmail,index)}>SaveLine</button>
+      <button onClick={() => saveLine(newNames, newEmails) }>Save</button>
     </div>
-  </div>
+  );
+}
+
+
+function NameForm({ addName }) { //un nameform est une zone ou on peut ajouter un nom. reste a virer le handle submit...
+  const [value, setValue] = React.useState("nameee");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!value) return;
+    addName(value);
+    setValue("name2");
+  };
+  return ( // gérer le handlesubmit ci dessous
+    <form onSubmit={handleSubmit}> 
+      <input
+        type="text"
+        className="nameInput"
+        value={value}
+        onChange={e => setValue(e.target.value)}
+      />
+    </form>
+  );
+}
+
+function EmailForm({ addEmail }) {
+  const [value, setValue] = React.useState("Email");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!value) return;
+    addEmail(value);
+    setValue("email2");
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        className="emailInput"
+        value={value}
+        onChange={e => setValue(e.target.value)}
+      />
+    </form>
   );
 }
 
@@ -92,7 +101,7 @@ function App() {
 //     setEmails(newEmails);
 // };
 
-  const saveLine = (newNames, newEmails) => {
+  const saveLine = (newNames, newEmails)=>{
     setNames(newNames);
     setEmails(newEmails);
   }
@@ -125,14 +134,13 @@ function App() {
       </div>
       <div className="ajout">
         <h2>ajout</h2> 
-        {/* <NameForm addName={addName} /> 
-        <EmailForm addEmail={addEmail} /> */}
+        <NameForm addName={addName} /> 
+        <EmailForm addEmail={addEmail} />
         {/* SaveLine est le format d'entrée. A coté on identifie la variable addName = fonction addName (le formulaire) */}
         <SaveLineForm 
           addName={addName} 
           addEmail={addEmail}
           saveLine={saveLine}
-          // index={index}
           />
         ],
       </div> 
