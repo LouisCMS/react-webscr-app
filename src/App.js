@@ -17,8 +17,25 @@ function Email({ email, index, completeTodo, removeTodo }) {
   );
 }
 
+function Actualize({ name, index, email, saveLine }) {
+  return (
+    <div className="line">
+      <div className="name">
+        {name.text}
+      </div>
+      <div className="email">
+        {email.text}
+      </div>
+      <div>
+        <button onClick={() => saveLine(index)}>Save</button>
+      </div>
+    </div>
+  );
+}
+
+
 function NameForm({ addName }) {
-  const [value, setValue] = React.useState("name");
+  const [value, setValue] = React.useState("nameee");
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -88,46 +105,61 @@ function App() {
   //   setEmail(newTodos);
   // };
 
-  const removeName = index => {
-    const newNames = [...names];
-    newNames.splice(index, 1);
-    setNames(newNames);
-  };
+  // const removeName = index => {
+  //   const newNames = [...names];
+  //   newNames.splice(index, 1);
+  //   setNames(newNames);
+  // };
 
   const saveName = index => {
     const newNames = [...names];
-    newNames[index].isValidated = true;
+    // newNames[index].isValidated = true;
     setNames(newNames);
   };
 
   const saveEmail = index => {
     const newEmails = [...emails];
-    newEmails[index].isValidated = true;
+    // newEmails[index].isValidated = true;
     setEmails(newEmails);
 };
 
   return (
     <div className="app">
-      <div className="scrap-list">{
-        names.map((name, index) => (
-          <Name
-            key={index}
-            index={index}
-            name={name}
-            // removeName={removeName}
-            // saveName={saveName}
-          />
-        )),
-        emails.map((email, index) => (
-          <Email
-            key={index}
-            index={index}
-            email={email}
-          />
-        ))}
+    <h1>App</h1> 
+      <div className="table">
+      <h1>table</h1> 
+        <div className="fixed-left">
+          <h2>names</h2> 
+          {
+          names.map((name, index) => (
+            <Name
+              key={index}
+              index={index}
+              name={name}
+            />
+          ))
+        }
+        </div>
+        <div className="fixed-right">
+          <h2>emails</h2> 
+          {
+          emails.map((email, index) => (
+            <Email
+              key={index}
+              index={index}
+              email={email}
+            />
+          ))
+        }
+        </div>  
+      </div>
+      <div className="ajout">
+        <h2>ajout</h2> 
+
         <NameForm addName={addName} /> 
         <EmailForm addEmail={addEmail} />
-      </div>
+      </div> 
+
     </div>
   );
 }

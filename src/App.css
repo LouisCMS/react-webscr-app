@@ -4,7 +4,16 @@
   padding: 30px;
 }
 
-.scrap-list {
+.name-list {
+  float: left;
+  background: #e8e8e8;
+  border-radius: 4px;
+  max-width: 400px;
+  padding: 5px;
+}
+
+.email-list {
+  float:left;
   background: #e8e8e8;
   border-radius: 4px;
   max-width: 400px;
@@ -24,6 +33,7 @@
 }
 
 .name {
+  float: left;
   align-items: center;
   background: #fff;
   border-radius: 3px;
@@ -36,6 +46,7 @@
 }
 
 .email {
+  float: left;
   align-items: center;
   background: #fff;
   border-radius: 3px;
