@@ -1,37 +1,36 @@
 import React from "react";
 import "./App.css";
 
-function Todo({ todo, index, completeTodo, removeTodo, saveRow }) {
+function Name({ name, index, completeTodo, removeTodo }) {
   return (
-    <div
-      className="todo"
-      // style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
-    >
-      {todo.name}  
-      {todo.mail}
-      <div>
-        <button onClick={() => removeTodo(index)}>x</button>
-        {/* <button onClick={()=> saveRow(index)}>ajouter requête</button> */}
-      </div>
-    </div>
+    <div className="name" >
+      {name.text}  
+    </div> 
   );
 }
 
-function TodoForm({ addTodo }) {
-  const [value, setValue] = React.useState("");
+function Email({ email, index, completeTodo, removeTodo }) {
+  return (
+    <div className="email" >
+      {email.text}  
+    </div> 
+  );
+}
+
+function NameForm({ addName }) {
+  const [value, setValue] = React.useState("name");
 
   const handleSubmit = e => {
     e.preventDefault();
     if (!value) return;
-    addTodo(value);
-    setValue("");
+    addName(value);
+    setValue("name2");
   };
-
   return (
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        className="input"
+        className="nameInput"
         value={value}
         onChange={e => setValue(e.target.value)}
       />
@@ -39,63 +38,95 @@ function TodoForm({ addTodo }) {
   );
 }
 
+function EmailForm({ addEmail }) {
+  const [value, setValue] = React.useState("Email");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!value) return;
+    addEmail(value);
+    setValue("email2");
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        className="emailInput"
+        value={value}
+        onChange={e => setValue(e.target.value)}
+      />
+    </form>
+  );
+}
+
+
 function App() {
-  const [todos, setTodos] = React.useState([
+  const [names, setNames] = React.useState([
     {
-      name: "Donald",
-      mail : "Donald@gmail.com",
-      requete : "Maison à miami près du golf",
-      lbc_url : "www.leboncoin.fr/request=maison-pout-donald",
-      isCompleted: false
+      text: "Donaldyy"
     }
-    // ,
-    // {
-    //   text: "Meet friend for lunch",
-    //   isCompleted: false
-    // },
-    // {
-    //   text: "Build really cool todo app",
-    //   isCompleted: false
-    // }
+  ]);
+  const [emails, setEmails] = React.useState([
+    {
+      text: "Donaldmail"
+    }
   ]);
 
-  const addTodo = text => {
-    const newTodos = [...todos, { text }];
-    setTodos(newTodos);
+  const addName = text => {
+    const newNames = [...names, { text }];
+    setNames(newNames);
   };
 
-  const completeTodo = index => {
-    const newTodos = [...todos];
-    newTodos[index].isCompleted = true;
-    setTodos(newTodos);
+  const addEmail = text => {
+    const newEmails = [...emails, { text }];
+    setEmails(newEmails);
   };
 
-  const removeTodo = index => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
+  // const completeTodo = index => {
+  //   const newTodos = [...todos];
+  //   newTodos[index].isCompleted = true;
+  //   setEmail(newTodos);
+  // };
+
+  const removeName = index => {
+    const newNames = [...names];
+    newNames.splice(index, 1);
+    setNames(newNames);
   };
 
-  const saveRow = index => {
-    const newTodos = [...todos];
-    newTodos[index].isValidated = true;
-    setTodos(newTodos);
+  const saveName = index => {
+    const newNames = [...names];
+    newNames[index].isValidated = true;
+    setNames(newNames);
   };
+
+  const saveEmail = index => {
+    const newEmails = [...emails];
+    newEmails[index].isValidated = true;
+    setEmails(newEmails);
+};
 
   return (
     <div className="app">
-      <div className="todo-list">
-        {todos.map((todo, index) => (
-          <Todo
+      <div className="scrap-list">{
+        names.map((name, index) => (
+          <Name
             key={index}
             index={index}
-            todo={todo}
-            completeTodo={completeTodo}
-            removeTodo={removeTodo}
-            saveRow={saveRow}
+            name={name}
+            // removeName={removeName}
+            // saveName={saveName}
+          />
+        )),
+        emails.map((email, index) => (
+          <Email
+            key={index}
+            index={index}
+            email={email}
           />
         ))}
-        <TodoForm addTodo={addTodo} />
+        <NameForm addName={addName} /> 
+        <EmailForm addEmail={addEmail} />
       </div>
     </div>
   );
