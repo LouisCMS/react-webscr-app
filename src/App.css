@@ -4,25 +4,25 @@
   padding: 30px;
 }
 
-.name-list {
+.line-list {
+  align-items:center;
+  background: #e8e8e8;
+  border-radius: 4px;
+  max-width: 400px;
+  padding: 5px;
+}
+
+.Formline {
+  align-items:center;
+  background: #17d37b;
+  border-radius: 4px;
+  max-width: 450px;
+  padding: 5px;
+}
+
+.nameForm {
   float: left;
-  background: #e8e8e8;
-  border-radius: 4px;
-  max-width: 400px;
-  padding: 5px;
-}
-
-.email-list {
-  float:left;
-  background: #e8e8e8;
-  border-radius: 4px;
-  max-width: 400px;
-  padding: 5px;
-}
-
-.todo {
-  align-items: center;
-  background: #fff;
+  background: #17d37b;
   border-radius: 3px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
   display: flex;
@@ -32,9 +32,21 @@
   padding: 3px 10px;
 }
 
-.name {
+.emailForm {
   float: left;
-  align-items: center;
+  background: #17d37b;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  display: flex;
+  font-size: 12px;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  padding: 3px 10px;
+}
+
+
+.name {
+  float:center;
   background: #fff;
   border-radius: 3px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
@@ -46,8 +58,7 @@
 }
 
 .email {
-  float: left;
-  align-items: center;
+  float:center;
   background: #fff;
   border-radius: 3px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
@@ -58,3 +69,26 @@
   padding: 3px 10px;
 }
 
+.name-container {
+  float:left;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  display: flex;
+  font-size: 12px;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  padding: 3px 10px;
+}
+
+.email-container {
+  float:right;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  display: flex;
+  font-size: 12px;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  padding: 3px 10px;
+}
